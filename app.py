@@ -1,5 +1,4 @@
 import streamlit as st
-st.title("Small Business Inventory Manager")
 
 # Session Setup
 
@@ -17,10 +16,6 @@ if "page" not in st.session_state:
 
 
 # page routing
-if st.session_state["page"] == "login":
-    st.title("Small Business Inventory Manager")
-    st.write("Welcome to the inventory system")
-    st.header("Login Page")
 
 elif st.session_state["page"] == "register":
     st.header("Register Page")
@@ -32,5 +27,21 @@ elif st.session_state["page"] == "employee_dashboard":
     st.header("Employee Dashboard")
 
 ## login page
+
+if st.session_state["page"] == "login":
+    st.title("Small Business Inventory Manager")
+    st.write("Welcome to the inventory system")
+    st.header("Login Page")
+
+    EMAIL = st.text_input("Email")
+    PASSWORD = st.text_input("Password")
+
+    if st.button("Login"):
+        st.write("Login clicked")
+
+    if st.button("Go to Register"):
+        st.session_state["page"] = "register"
+        st.rerun()
+
 
 
