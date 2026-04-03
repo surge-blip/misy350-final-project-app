@@ -15,10 +15,11 @@ if "role" not in st.session_state:
 if "page" not in st.session_state:
     st.session_state["page"] = "login"
 
-# page routing
 
 # page routing
 if st.session_state["page"] == "login":
+    st.title("Small Business Inventory Manager")
+    st.write("Welcome to the inventory system")
     st.header("Login Page")
 
 elif st.session_state["page"] == "register":
@@ -29,3 +30,7 @@ elif st.session_state["page"] == "owner_dashboard":
 
 elif st.session_state["page"] == "employee_dashboard":
     st.header("Employee Dashboard")
+
+## login page
+
+
