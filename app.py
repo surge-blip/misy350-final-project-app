@@ -14,9 +14,12 @@ if "role" not in st.session_state:
 if "page" not in st.session_state:
     st.session_state["page"] = "login"
 
+if "users" not in st.session_state:
+    st.session_state["users"] = []
 
 # page routing
 
+# login page
 if st.session_state["page"] == "login":
 
     st.title("Small Business Inventory Manager")
@@ -33,7 +36,7 @@ if st.session_state["page"] == "login":
         st.session_state["page"] = "register"
         st.rerun()
 
-
+# Register Page 
 elif st.session_state["page"] == "register":
 
     st.title("Register Account")
@@ -46,7 +49,16 @@ elif st.session_state["page"] == "register":
     role = st.selectbox("Role", ["Owner", "Employee"])
 
     if st.button("Register"):
-        st.write("Account created")
+
+        new_user = {
+            "name": name,
+            "email": email,
+            "password": password,
+            "role": role
+    }
+
+        st.session_state["users"].append(new_user)
+        st.write("Account created successfully")
 
     if st.button("Go to Login"):
         st.session_state["page"] = "login"
