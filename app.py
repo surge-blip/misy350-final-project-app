@@ -49,6 +49,8 @@ if st.session_state["page"] == "login":
         st.session_state["page"] = "register"
         st.rerun()
 
+    st.divider()
+
 # Register Page 
 elif st.session_state["page"] == "register":
 
@@ -77,12 +79,17 @@ elif st.session_state["page"] == "register":
         st.session_state["page"] = "login"
         st.rerun()
 
+    st.divider()
+
 
 elif st.session_state["page"] == "owner_dashboard":
 
     st.title("Owner Dashboard")
     st.write("Welcome,", st.session_state["user"]["name"])
     st.write("Role:", st.session_state["role"])
+
+    st.subheader("Inventory Section")
+    st.write("Manage your products here")
 
     if st.button("Logout"):
         st.session_state["logged_in"] = False
@@ -98,6 +105,9 @@ elif st.session_state["page"] == "employee_dashboard":
     st.title("Employee Dashboard")
     st.write("Welcome,", st.session_state["user"]["name"])
     st.write("Role:", st.session_state["role"])
+
+    st.subheader("Inventory Overview")
+    st.write("View available products")
 
     if st.button("Logout"):
         st.session_state["logged_in"] = False
