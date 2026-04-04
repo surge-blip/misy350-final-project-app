@@ -30,7 +30,10 @@ if st.session_state["page"] == "login":
     password = st.text_input("Password", type="password")
 
     if st.button("Login"):
-        st.write("Login clicked")
+
+        for user in st.session_state["users"]:
+            if user["email"] == email and user["password"] == password:
+                st.write("Login successful")
 
     if st.button("Go to Register"):
         st.session_state["page"] = "register"
