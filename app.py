@@ -84,11 +84,29 @@ elif st.session_state["page"] == "owner_dashboard":
     st.write("Welcome,", st.session_state["user"]["name"])
     st.write("Role:", st.session_state["role"])
 
+    if st.button("Logout"):
+        st.session_state["logged_in"] = False
+        st.session_state["user"] = None
+        st.session_state["role"] = None
+        st.session_state["page"] = "login"
+        st.rerun()
+
+        
+
 elif st.session_state["page"] == "employee_dashboard":
 
     st.title("Employee Dashboard")
     st.write("Welcome,", st.session_state["user"]["name"])
     st.write("Role:", st.session_state["role"])
+
+    if st.button("Logout"):
+        st.session_state["logged_in"] = False
+        st.session_state["user"] = None
+        st.session_state["role"] = None
+        st.session_state["page"] = "login"
+        st.rerun()
+
+   
 
 
 
