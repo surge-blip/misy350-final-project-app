@@ -79,10 +79,16 @@ elif st.session_state["page"] == "register":
 
 
 elif st.session_state["page"] == "owner_dashboard":
-    st.header("Owner Dashboard")
+
+    st.title("Owner Dashboard")
+    st.write("Welcome,", st.session_state["user"]["name"])
+    st.write("Role:", st.session_state["role"])
 
 elif st.session_state["page"] == "employee_dashboard":
-    st.header("Employee Dashboard")
+
+    st.title("Employee Dashboard")
+    st.write("Welcome,", st.session_state["user"]["name"])
+    st.write("Role:", st.session_state["role"])
 
 
 
