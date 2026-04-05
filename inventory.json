@@ -1,1 +1,10 @@
-[]
+[
+    {
+        "name": "Tomato",
+        "quantity": 2
+    },
+    {
+        "name": "hi",
+        "quantity": 2
+    }
+]

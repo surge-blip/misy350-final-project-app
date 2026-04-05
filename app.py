@@ -100,6 +100,25 @@ elif st.session_state["page"] == "owner_dashboard":
     st.subheader("Inventory Section")
     st.write("Manage your products here")
 
+    product_name = st.text_input("Product Name")
+    product_quantity = st.number_input("Quantity", min_value=0)
+
+    if st.button("Add Product"):
+
+        product = {
+            "name": product_name,
+            "quantity": product_quantity
+        }
+
+        st.session_state["inventory"].append(product)
+
+        with json_path_inventory.open("w") as f:
+            json.dump(st.session_state["inventory"], f, indent=4)
+
+        st.write("Product added")
+
+
+
     if st.button("Logout"):
         st.session_state["logged_in"] = False
         st.session_state["user"] = None
