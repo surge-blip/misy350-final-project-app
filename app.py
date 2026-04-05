@@ -100,6 +100,13 @@ elif st.session_state["page"] == "owner_dashboard":
     st.subheader("Inventory Section")
     st.write("Manage your products here")
 
+    st.divider()
+
+    st.subheader("Inventory List")
+
+    for item in st.session_state["inventory"]:
+        st.write(item)
+
     product_name = st.text_input("Product Name")
     product_quantity = st.number_input("Quantity", min_value=0)
 
@@ -136,6 +143,13 @@ elif st.session_state["page"] == "employee_dashboard":
 
     st.subheader("Inventory Overview")
     st.write("View available products")
+
+    st.divider()
+
+    st.subheader("Inventory List")
+
+    for item in st.session_state["inventory"]:
+        st.write(item)
 
     if st.button("Logout"):
         st.session_state["logged_in"] = False
