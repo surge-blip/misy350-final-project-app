@@ -123,7 +123,35 @@ elif st.session_state["page"] == "owner_dashboard":
             json.dump(st.session_state["inventory"], f, indent=4)
 
         st.write("Product added")
+    
+    st.divider()
 
+    st.subheader("Update or Delete Product")
+
+    for item in st.session_state["inventory"]:
+
+        new_quantity = st.number_input(
+            f"Update quantity for {item['name']}",
+            min_value=0, value=item["quantity"]
+            )
+
+        if st.button(f"Update {item['name']}"):
+            item["quantity"] = new_quantity
+
+            with json_path_inventory.open("w") as f:
+                json.dump(st.session_state["inventory"], f, indent=4)
+
+            st.write("Product updated")
+            st.rerun()
+
+        if st.button(f"Delete {item['name']}"):
+            st.session_state["inventory"].remove(item)
+
+            with json_path_inventory.open("w") as f:
+                json.dump(st.session_state["inventory"], f, indent=4)
+
+            st.write("Product deleted")
+            st.rerun()
 
 
     if st.button("Logout"):
