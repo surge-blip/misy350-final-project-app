@@ -1,5 +1,6 @@
 import streamlit as st
-
+import json
+from pathlib import Path
 # Session Setup
 
 if "logged_in" not in st.session_state:
@@ -16,6 +17,14 @@ if "page" not in st.session_state:
 
 if "users" not in st.session_state:
     st.session_state["users"] = []
+
+json_path_inventory = Path("inventory.json")
+
+if json_path_inventory.exists():
+    with json_path_inventory.open("r") as f:
+        st.session_state["inventory"] = json.load(f)
+else:
+    st.session_state["inventory"] = []
 
 # page routing
 
