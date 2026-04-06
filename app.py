@@ -26,6 +26,14 @@ if json_path_inventory.exists():
 else:
     st.session_state["inventory"] = []
 
+json_path_users = Path("users.json")
+
+if json_path_users.exists():
+    with json_path_users.open("r") as f:
+        st.session_state["users"] = json.load(f)
+else:
+    st.session_state["users"] = []
+
 # page routing
 
 # login page
@@ -82,8 +90,12 @@ elif st.session_state["page"] == "register":
     }
 
         st.session_state["users"].append(new_user)
+
+        with json_path_users.open("w") as f:
+            json.dump(st.session_state["users"], f, indent=4)
         st.write("Account created successfully")
 
+        
     if st.button("Go to Login"):
         st.session_state["page"] = "login"
         st.rerun()
