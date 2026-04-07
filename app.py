@@ -1,6 +1,8 @@
 import streamlit as st
 import json
 from pathlib import Path
+import pandas as pd
+
 # Session Setup
 
 if "logged_in" not in st.session_state:
@@ -114,10 +116,14 @@ elif st.session_state["page"] == "owner_dashboard":
 
     st.divider()
 
-    st.subheader("Inventory List")
+    st.subheader("Inventory Table")
 
-    for item in st.session_state["inventory"]:
-        st.write(item)
+    if len(st.session_state["inventory"]) > 0:
+        df = pd.DataFrame(st.session_state["inventory"])
+        st.dataframe(df)
+    else:
+        st.info("No products available")
+    
 
     product_name = st.text_input("Product Name")
     product_quantity = st.number_input("Quantity", min_value=0)
@@ -186,10 +192,13 @@ elif st.session_state["page"] == "employee_dashboard":
 
     st.divider()
 
-    st.subheader("Inventory List")
+    st.subheader("Inventory Table")
 
-    for item in st.session_state["inventory"]:
-        st.write(item)
+    if len(st.session_state["inventory"]) > 0:
+        df = pd.DataFrame(st.session_state["inventory"])
+        st.dataframe(df)
+    else:
+        st.info("No products available")
 
     if st.button("Logout"):
         st.session_state["logged_in"] = False

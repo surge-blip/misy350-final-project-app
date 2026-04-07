@@ -10,5 +10,17 @@
         "email": "John@udel.edu",
         "password": "123",
         "role": "Owner"
+    },
+    {
+        "name": "John",
+        "email": "Surajiv@udel.edu",
+        "password": "hi",
+        "role": "Owner"
+    },
+    {
+        "name": "Matt",
+        "email": "Surajiv82@gmail.com",
+        "password": "123",
+        "role": "Employee"
     }
 ]
