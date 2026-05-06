@@ -52,6 +52,27 @@ manager = service.InventoryManager(
     st.session_state["users"]
 )
 
+with st.sidebar:
+
+    st.title("Inventory Manager")
+
+    if st.session_state["logged_in"]:
+
+        st.write(f"Logged in as: {st.session_state['user']['name']}")
+
+        st.divider()
+
+        if st.session_state["role"] == "Owner":
+
+            if st.button(
+                "Owner Dashboard",
+                key="owner_dashboard_btn",
+                use_container_width=True
+            ):
+
+                st.session_state["page"] = "owner_dashboard"
+                st.rerun()
+
 # page routing
 
 # login page
