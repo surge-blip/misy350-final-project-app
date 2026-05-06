@@ -83,6 +83,21 @@ with st.sidebar:
 
                 st.session_state["page"] = "employee_dashboard"
                 st.rerun()
+        
+        st.divider()
+
+        if st.button(
+            "Logout",
+            key="sidebar_logout_btn",
+            use_container_width=True
+        ):
+
+            st.session_state["logged_in"] = False
+            st.session_state["user"] = None
+            st.session_state["role"] = None
+            st.session_state["page"] = "login"
+
+            st.rerun()
 
 # page routing
 
@@ -213,13 +228,6 @@ elif st.session_state["page"] == "owner_dashboard":
             st.rerun()
 
 
-    if st.button("Logout"):
-        st.session_state["logged_in"] = False
-        st.session_state["user"] = None
-        st.session_state["role"] = None
-        st.session_state["page"] = "login"
-        st.rerun()
-
         
 
 elif st.session_state["page"] == "employee_dashboard":
@@ -241,12 +249,6 @@ elif st.session_state["page"] == "employee_dashboard":
     else:
         st.info("No products available")
 
-    if st.button("Logout"):
-        st.session_state["logged_in"] = False
-        st.session_state["user"] = None
-        st.session_state["role"] = None
-        st.session_state["page"] = "login"
-        st.rerun()
 
    
 
