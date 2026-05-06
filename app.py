@@ -65,20 +65,25 @@ if st.session_state["page"] == "login":
     password = st.text_input("Password", type="password")
 
     if st.button("Login"):
+                
+        user = manager.login(email, password)
 
-        for user in st.session_state["users"]:
-            if user["email"] == email and user["password"] == password:
+        if user:
+            
+            st.session_state["logged_in"] = True
+            st.session_state["user"] = user
+            st.session_state["role"] = user["role"]
 
-                st.session_state["logged_in"] = True
-                st.session_state["user"] = user
-                st.session_state["role"] = user["role"]
+            if user["role"] == "Owner":
+                st.session_state["page"] = "owner_dashboard"
 
-                if user["role"] == "Owner":
-                    st.session_state["page"] = "owner_dashboard"
-                else:
-                    st.session_state["page"] = "employee_dashboard"
+            else:
+                st.session_state["page"] = "employee_dashboard"
 
-                st.rerun()
+            st.rerun()
+
+        else:
+            st.error("Invalid email or password")
 
     if st.button("Go to Register"):
         st.session_state["page"] = "register"
