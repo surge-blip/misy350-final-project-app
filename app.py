@@ -105,17 +105,11 @@ elif st.session_state["page"] == "register":
 
     if st.button("Register"):
 
-        new_user = {
-            "name": name,
-            "email": email,
-            "password": password,
-            "role": role
-    }
-
-        st.session_state["users"].append(new_user)
+        manager.register(name, email, password, role)
 
         with json_path_users.open("w") as f:
             json.dump(st.session_state["users"], f, indent=4)
+
         st.write("Account created successfully")
 
         
