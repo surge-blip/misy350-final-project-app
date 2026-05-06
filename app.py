@@ -145,12 +145,7 @@ elif st.session_state["page"] == "owner_dashboard":
 
     if st.button("Add Product"):
 
-        product = {
-            "name": product_name,
-            "quantity": product_quantity
-        }
-
-        st.session_state["inventory"].append(product)
+        manager.add(product_name, product_quantity)
 
         save_inventory(st.session_state["inventory"], json_path_inventory)
 
