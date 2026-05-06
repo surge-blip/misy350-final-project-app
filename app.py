@@ -163,7 +163,7 @@ elif st.session_state["page"] == "owner_dashboard":
             )
 
         if st.button(f"Update {item['name']}"):
-            item["quantity"] = new_quantity
+            manager.update(item["name"], new_quantity)
 
             with json_path_inventory.open("w") as f:
                 json.dump(st.session_state["inventory"], f, indent=4)
