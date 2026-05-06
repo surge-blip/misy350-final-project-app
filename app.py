@@ -72,6 +72,17 @@ with st.sidebar:
 
                 st.session_state["page"] = "owner_dashboard"
                 st.rerun()
+            
+        elif st.session_state["role"] == "Employee":
+
+            if st.button(
+                "Employee Dashboard",
+                key="employee_dashboard_btn",
+                use_container_width=True
+            ):
+
+                st.session_state["page"] = "employee_dashboard"
+                st.rerun()
 
 # page routing
 
