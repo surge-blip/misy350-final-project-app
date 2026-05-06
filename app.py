@@ -172,7 +172,7 @@ elif st.session_state["page"] == "owner_dashboard":
             st.rerun()
 
         if st.button(f"Delete {item['name']}"):
-            st.session_state["inventory"].remove(item)
+            manager.delete(item["name"])
 
             with json_path_inventory.open("w") as f:
                 json.dump(st.session_state["inventory"], f, indent=4)
