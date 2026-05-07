@@ -209,27 +209,33 @@ elif st.session_state["page"] == "owner_dashboard":
                 len(st.session_state["inventory"])
             )
     
+    tab1, tab2 = st.tabs([
+    "Add Product",
+    "Manage Products"
+    ])
 
-    product_name = st.text_input("Product Name")
-    product_quantity = st.number_input("Quantity", min_value=0)
+    with tab1:
 
-    if st.button(
-        "Add Product",
-        key="add_product_btn"
-    ):  
+        product_name = st.text_input("Product Name")
+        product_quantity = st.number_input("Quantity", min_value=0)
 
-        with st.spinner("Adding product..."):
+        if st.button(
+            "Add Product",
+            key="add_product_btn"
+        ):  
 
-            time.sleep(3)
+            with st.spinner("Adding product..."):
 
-            manager.add(product_name, product_quantity)
+                time.sleep(3)
 
-            save_inventory(
-                st.session_state["inventory"],
-                json_path_inventory
-            )
+                manager.add(product_name, product_quantity)
 
-        st.write("Product added")
+                save_inventory(
+                    st.session_state["inventory"],
+                    json_path_inventory
+                )
+
+            st.write("Product added")
     
     st.divider()
 
