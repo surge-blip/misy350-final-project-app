@@ -237,40 +237,40 @@ elif st.session_state["page"] == "owner_dashboard":
 
             st.write("Product added")
     
-    st.divider()
+    with tab2:
 
-    st.subheader("Update or Delete Product")
+        st.subheader("Update or Delete Product")
 
-    for item in st.session_state["inventory"]:
+        for item in st.session_state["inventory"]:
 
-        new_quantity = st.number_input(
-            f"Update quantity for {item['name']}",
-            min_value=0, value=item["quantity"]
-            )
+            new_quantity = st.number_input(
+                f"Update quantity for {item['name']}",
+                min_value=0, value=item["quantity"]
+                )
 
-        if st.button(
-            f"Update {item['name']}",
-            key=f"update_{item['name']}"
-        ):
-            manager.update(item["name"], new_quantity)
+            if st.button(
+                f"Update {item['name']}",
+                key=f"update_{item['name']}"
+            ):
+                manager.update(item["name"], new_quantity)
 
-            with json_path_inventory.open("w") as f:
-                json.dump(st.session_state["inventory"], f, indent=4)
+                with json_path_inventory.open("w") as f:
+                    json.dump(st.session_state["inventory"], f, indent=4)
 
-            st.write("Product updated")
-            st.rerun()
+                st.write("Product updated")
+                st.rerun()
 
-        if st.button(
-            f"Delete {item['name']}",
-            key=f"delete_{item['name']}"
-        ):
-            manager.delete(item["name"])
+            if st.button(
+                f"Delete {item['name']}",
+                key=f"delete_{item['name']}"
+            ):
+                manager.delete(item["name"])
 
-            with json_path_inventory.open("w") as f:
-                json.dump(st.session_state["inventory"], f, indent=4)
+                with json_path_inventory.open("w") as f:
+                    json.dump(st.session_state["inventory"], f, indent=4)
 
-            st.write("Product deleted")
-            st.rerun()
+                st.write("Product deleted")
+                st.rerun()
 
 
         
