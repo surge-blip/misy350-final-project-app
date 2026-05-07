@@ -4,6 +4,7 @@ from pathlib import Path
 import pandas as pd
 import data_manager
 import service
+import time
 
 
 # data layer
@@ -212,11 +213,21 @@ elif st.session_state["page"] == "owner_dashboard":
     product_name = st.text_input("Product Name")
     product_quantity = st.number_input("Quantity", min_value=0)
 
-    if st.button("Add Product"):
+    if st.button(
+        "Add Product",
+        key="add_product_btn"
+    ):  
 
-        manager.add(product_name, product_quantity)
+        with st.spinner("Adding product..."):
 
-        save_inventory(st.session_state["inventory"], json_path_inventory)
+            time.sleep(3)
+
+            manager.add(product_name, product_quantity)
+
+            save_inventory(
+                st.session_state["inventory"],
+                json_path_inventory
+            )
 
         st.write("Product added")
     
@@ -231,7 +242,10 @@ elif st.session_state["page"] == "owner_dashboard":
             min_value=0, value=item["quantity"]
             )
 
-        if st.button(f"Update {item['name']}"):
+        if st.button(
+            f"Update {item['name']}",
+            key=f"update_{item['name']}"
+        ):
             manager.update(item["name"], new_quantity)
 
             with json_path_inventory.open("w") as f:
@@ -240,7 +254,10 @@ elif st.session_state["page"] == "owner_dashboard":
             st.write("Product updated")
             st.rerun()
 
-        if st.button(f"Delete {item['name']}"):
+        if st.button(
+            f"Delete {item['name']}",
+            key=f"delete_{item['name']}"
+        ):
             manager.delete(item["name"])
 
             with json_path_inventory.open("w") as f:
