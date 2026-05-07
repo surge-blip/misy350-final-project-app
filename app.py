@@ -178,13 +178,35 @@ elif st.session_state["page"] == "owner_dashboard":
 
     st.divider()
 
-    st.subheader("Inventory Table")
+    col1, col2 = st.columns([3,1])
 
-    if len(st.session_state["inventory"]) > 0:
-        df = pd.DataFrame(st.session_state["inventory"])
-        st.dataframe(df)
-    else:
-        st.info("No products available")
+    with col1:
+
+        st.subheader("Inventory Table")
+
+        with st.container(border=True):
+
+            if len(st.session_state["inventory"]) > 0:
+
+                df = pd.DataFrame(
+                    st.session_state["inventory"]
+                )
+
+                st.dataframe(df)
+
+            else:
+                st.info("No products available")
+
+    with col2:
+
+        st.subheader("Inventory Summary")
+
+        with st.container(border=True):
+
+            st.write(
+                "Total Products:",
+                len(st.session_state["inventory"])
+            )
     
 
     product_name = st.text_input("Product Name")

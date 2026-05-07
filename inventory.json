@@ -6,5 +6,9 @@
     {
         "name": "Mouse",
         "quantity": 2
+    },
+    {
+        "name": "Headphone",
+        "quantity": 2
     }
 ]
