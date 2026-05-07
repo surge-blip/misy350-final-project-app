@@ -274,7 +274,21 @@ elif st.session_state["page"] == "owner_dashboard":
 
                 st.write("Product deleted")
                 st.rerun()
+            
+    st.divider()
 
+    st.subheader("Employee Requests")
+
+    if len(st.session_state["requests"]) > 0:
+
+        requests_df = pd.DataFrame(
+            st.session_state["requests"]
+        )
+
+        st.dataframe(requests_df)
+
+    else:
+        st.info("No inventory requests submitted")
 
         
 
