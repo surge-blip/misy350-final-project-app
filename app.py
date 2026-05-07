@@ -310,6 +310,28 @@ elif st.session_state["page"] == "employee_dashboard":
                 "Total Products:",
                 len(st.session_state["inventory"])
             )
+    st.divider()
+
+    st.subheader("Request Inventory")
+
+    request_item = st.text_input(
+        "Requested Product"
+    )
+
+    request_quantity = st.number_input(
+        "Requested Quantity",
+        min_value=1
+    )
+
+    if st.button(
+        "Submit Request",
+        key="submit_request_btn"
+    ):
+
+        st.write("Request submitted")
+
+
+        
 
 
    
