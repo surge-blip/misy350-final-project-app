@@ -36,6 +36,9 @@ if "page" not in st.session_state:
 if "users" not in st.session_state:
     st.session_state["users"] = []
 
+if "requests" not in st.session_state:
+    st.session_state["requests"] = []
+
 json_path_inventory = Path("inventory.json")
 
 st.session_state["inventory"] = data_manager.load_inventory(json_path_inventory)
@@ -327,6 +330,14 @@ elif st.session_state["page"] == "employee_dashboard":
         "Submit Request",
         key="submit_request_btn"
     ):
+
+        st.session_state["requests"].append(
+            {
+        "item": request_item,
+        "quantity": request_quantity,
+        "employee": st.session_state["user"]["name"]
+            }
+        )
 
         st.write("Request submitted")
 
