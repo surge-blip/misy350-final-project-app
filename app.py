@@ -292,20 +292,24 @@ elif st.session_state["page"] == "employee_dashboard":
 
         st.subheader("Inventory Table")
 
-        if len(st.session_state["inventory"]) > 0:
-            df = pd.DataFrame(st.session_state["inventory"])
-            st.dataframe(df)
-        else:
-            st.info("No products available")
+        with st.container(border=True):
+
+            if len(st.session_state["inventory"]) > 0:
+                df = pd.DataFrame(st.session_state["inventory"])
+                st.dataframe(df)
+            else:
+                st.info("No products available")
 
     with col2:
 
-        st.subheader("Inventory Summary")
+        with st.container(border=True):
 
-        st.write(
-            "Total Products:",
-            len(st.session_state["inventory"])
-        )
+            st.subheader("Inventory Summary")
+
+            st.write(
+                "Total Products:",
+                len(st.session_state["inventory"])
+            )
 
 
    
