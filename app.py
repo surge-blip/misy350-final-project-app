@@ -350,12 +350,17 @@ elif st.session_state["page"] == "owner_dashboard":
                 }
             )
 
+        ai_response = get_ai_response(
+            client,
+            st.session_state["messages"]
+        )
+
         st.session_state["messages"].append(
-                {
-                    "role": "assistant",
-                    "content": "Assistant response placeholder"
-                }
-            )
+            {
+                "role": "assistant",
+                "content": ai_response
+            }
+        )
 
         st.rerun()
 
