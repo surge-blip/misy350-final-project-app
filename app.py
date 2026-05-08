@@ -5,6 +5,15 @@ import pandas as pd
 import data_manager
 import service
 import time
+import os
+from dotenv import load_dotenv
+from openai import OpenAI
+
+load_dotenv()
+
+api_key = os.getenv("OPENAI_API_KEY")
+
+client = OpenAI(api_key=api_key)
 
 
 # data layer
@@ -18,6 +27,16 @@ def load_inventory(json_path):
 def save_inventory(inventory, json_path):
     with open(json_path, "w") as f:
         json.dump(inventory, f, indent=4)
+
+def get_ai_response(client, messages):
+
+    ai_response = client.chat.completions.create(
+        model="gpt-5-mini",
+        messages=messages,
+        temperature=1
+    )
+
+    return ai_response.choices[0].message.content
 
 # Session Setup
 
