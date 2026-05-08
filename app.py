@@ -318,6 +318,28 @@ elif st.session_state["page"] == "owner_dashboard":
             with st.chat_message(message["role"]):
                 st.markdown(message["content"])
 
+    user_input = st.chat_input(
+        "Ask inventory assistant..."
+        )
+
+    if user_input:
+
+        st.session_state["messages"].append(
+                {
+                    "role": "user",
+                    "content": user_input
+                }
+            )
+
+        st.session_state["messages"].append(
+                {
+                    "role": "assistant",
+                    "content": "Assistant response placeholder"
+                }
+            )
+
+        st.rerun()
+
         
 
 elif st.session_state["page"] == "employee_dashboard":
