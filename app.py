@@ -108,7 +108,7 @@ with st.sidebar:
 # login page
 if st.session_state["page"] == "login":
 
-    st.title("Small Business Inventory Manager")
+    st.title("Inventory Manager")
     st.write("Welcome to the inventory system")
     st.header("Login Page")
 
@@ -286,6 +286,15 @@ elif st.session_state["page"] == "owner_dashboard":
         )
 
         st.dataframe(requests_df)
+        
+        if st.button(
+            "Clear Requests",
+            key="clear_requests_btn"
+        ):
+
+            st.session_state["requests"] = []
+
+            st.rerun()
 
     else:
         st.info("No inventory requests submitted")
