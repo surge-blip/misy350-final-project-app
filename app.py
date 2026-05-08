@@ -39,6 +39,14 @@ if "users" not in st.session_state:
 if "requests" not in st.session_state:
     st.session_state["requests"] = []
 
+if "messages" not in st.session_state:
+    st.session_state["messages"] = [
+        {
+            "role": "assistant",
+            "content": "Hi, how can I help you?"
+        }
+    ]
+
 json_path_inventory = Path("inventory.json")
 
 st.session_state["inventory"] = data_manager.load_inventory(json_path_inventory)
@@ -286,7 +294,7 @@ elif st.session_state["page"] == "owner_dashboard":
         )
 
         st.dataframe(requests_df)
-        
+
         if st.button(
             "Clear Requests",
             key="clear_requests_btn"
@@ -298,6 +306,17 @@ elif st.session_state["page"] == "owner_dashboard":
 
     else:
         st.info("No inventory requests submitted")
+
+    st.divider()
+
+    st.subheader("Inventory AI Assistant")
+
+    with st.container(border=True, height=300):
+
+        for message in st.session_state["messages"]:
+
+            with st.chat_message(message["role"]):
+                st.markdown(message["content"])
 
         
 
@@ -363,6 +382,7 @@ elif st.session_state["page"] == "employee_dashboard":
         )
 
         st.write("Request submitted")
+
 
 
         
