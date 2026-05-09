@@ -256,8 +256,16 @@ elif st.session_state["page"] == "owner_dashboard":
 
     with tab1:
 
-        product_name = st.text_input("Product Name")
-        product_quantity = st.number_input("Quantity", min_value=0)
+        col1, col2 = st.columns(2)
+
+        with col1:
+            product_name = st.text_input("Product Name")
+
+        with col2:
+            product_quantity = st.number_input(
+                "Quantity",
+                min_value=0
+            )
 
         if st.button(
             "Add Product",
