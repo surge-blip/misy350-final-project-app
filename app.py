@@ -379,8 +379,19 @@ elif st.session_state["page"] == "owner_dashboard":
 elif st.session_state["page"] == "employee_dashboard":
 
     st.title("Employee Dashboard")
-    st.write("Welcome,", st.session_state["user"]["name"])
-    st.write("Role:", st.session_state["role"])
+
+    with st.container(border=True):
+
+        col1, col2 = st.columns([3,1])
+
+        with col1:
+            st.subheader(
+                f"Welcome, {st.session_state['user']['name']}"
+            )
+
+        with col2:
+            st.write("Role")
+            st.write(st.session_state["role"])
 
     st.subheader("Inventory Overview")
     st.write("View available products")
