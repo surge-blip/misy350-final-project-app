@@ -201,10 +201,20 @@ elif st.session_state["page"] == "register":
 elif st.session_state["page"] == "owner_dashboard":
 
     st.title("Owner Dashboard")
-    st.write("Welcome,", st.session_state["user"]["name"])
-    st.write("Role:", st.session_state["role"])
 
-    st.subheader("Inventory Section")
+    with st.container(border=True):
+
+        col1, col2 = st.columns([3,1])
+
+        with col1:
+            st.subheader(
+                f"Welcome, {st.session_state['user']['name']}"
+            )
+
+        with col2:
+            st.write("Role")
+            st.write(st.session_state["role"])
+
     st.write("Manage your products here")
 
     st.divider()
