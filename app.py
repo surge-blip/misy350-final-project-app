@@ -43,9 +43,17 @@ if "page" not in st.session_state:
 
 if "users" not in st.session_state:
     st.session_state["users"] = []
+json_path_requests = Path("requests.json")
 
 if "requests" not in st.session_state:
-    st.session_state["requests"] = []
+
+    if json_path_requests.exists():
+
+        with json_path_requests.open("r") as f:
+            st.session_state["requests"] = json.load(f)
+
+    else:
+        st.session_state["requests"] = []
 
 if "messages" not in st.session_state:
     st.session_state["messages"] = [
@@ -60,6 +68,7 @@ json_path_inventory = Path("inventory.json")
 st.session_state["inventory"] = data_manager.load_inventory(json_path_inventory)
 
 json_path_users = Path("users.json")
+
 
 if json_path_users.exists():
     with json_path_users.open("r") as f:
@@ -353,6 +362,9 @@ elif st.session_state["page"] == "owner_dashboard":
 
             st.session_state["requests"] = []
 
+            with json_path_requests.open("w") as f:
+                json.dump([], f, indent=4)
+
             st.rerun()
 
     else:
@@ -469,6 +481,13 @@ elif st.session_state["page"] == "employee_dashboard":
         "employee": st.session_state["user"]["name"]
             }
         )
+
+        with json_path_requests.open("w") as f:
+            json.dump(
+                st.session_state["requests"],
+                f,
+                indent=4
+    )
 
         st.write("Request submitted")
 
