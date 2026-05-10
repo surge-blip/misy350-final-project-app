@@ -11,22 +11,18 @@
         "password": "123",
         "role": "Owner"
     },
-    {
-        "name": "John",
-        "email": "Surajiv@udel.edu",
-        "password": "hi",
-        "role": "Owner"
-    },
-    {
+
+    {   
         "name": "Matt",
-        "email": "Surajiv82@gmail.com",
-        "password": "123",
-        "role": "Employee"
+        "email": "owner@inventory.com",
+        "password": "owner123",
+        "role": "Owner" 
     },
+
     {
-        "name": "Sumi",
-        "email": "Sumi@gmail.com",
-        "password": "3456",
-        "role": "Owner"
+       "name": "John",
+       "email": "employee@inventory.com",
+        "password": "employee123",
+        "role": "Employee" 
     }
 ]

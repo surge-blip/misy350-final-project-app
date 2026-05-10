@@ -133,7 +133,28 @@ with st.sidebar:
 # page routing
 
 # login page
+
+with st.container(border=True):
+
+    st.subheader("Test Accounts")
+
+    st.markdown("Owner Account")
+
+    with st.container(border=True):
+                st.text(
+                    "Email: owner@inventory.com\nPassword: owner123"
+                )
+
+    st.markdown("Employee Account")
+
+    with st.container(border=True):
+                st.text(
+                    "Email: employee@inventory.com\nPassword: employee123"
+                )
+
 if st.session_state["page"] == "login":
+
+
 
     st.title("Inventory Manager")
     st.write("Welcome to the inventory system")
@@ -141,6 +162,7 @@ if st.session_state["page"] == "login":
 
     email = st.text_input("Email")
     password = st.text_input("Password", type="password")
+
 
     if st.button("Login"):
                 
@@ -162,6 +184,7 @@ if st.session_state["page"] == "login":
 
         else:
             st.error("Invalid email or password")
+
 
     if st.button("Go to Register"):
         st.session_state["page"] = "register"
