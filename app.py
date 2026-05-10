@@ -134,25 +134,26 @@ with st.sidebar:
 
 # login page
 
-with st.container(border=True):
-
-    st.subheader("Test Accounts")
-
-    st.markdown("Owner Account")
-
-    with st.container(border=True):
-                st.text(
-                    "Email: owner@inventory.com\nPassword: owner123"
-                )
-
-    st.markdown("Employee Account")
-
-    with st.container(border=True):
-                st.text(
-                    "Email: employee@inventory.com\nPassword: employee123"
-                )
 
 if st.session_state["page"] == "login":
+
+    with st.container(border=True):
+
+        st.subheader("Test Accounts")
+
+        st.markdown("Owner Account")
+
+        with st.container(border=True):
+                    st.text(
+                        "Email: owner@inventory.com\nPassword: owner123"
+                    )
+
+        st.markdown("Employee Account")
+
+        with st.container(border=True):
+                    st.text(
+                        "Email: employee@inventory.com\nPassword: employee123"
+                    )
 
 
 
