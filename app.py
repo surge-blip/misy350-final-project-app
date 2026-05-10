@@ -292,7 +292,7 @@ elif st.session_state["page"] == "owner_dashboard":
 
                 manager.add(product_name, product_quantity)
 
-                save_inventory(
+                data_manager.save_inventory(
                     st.session_state["inventory"],
                     json_path_inventory
                 )
