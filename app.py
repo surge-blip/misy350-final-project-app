@@ -16,17 +16,6 @@ api_key = os.getenv("OPENAI_API_KEY")
 client = OpenAI(api_key=api_key)
 
 
-# data layer
-
-def load_inventory(json_path):
-    if json_path.exists():
-        with open(json_path, "r") as f:
-            return json.load(f)
-    return []
-
-def save_inventory(inventory, json_path):
-    with open(json_path, "w") as f:
-        json.dump(inventory, f, indent=4)
 
 def get_ai_response(client, messages):
 
@@ -136,6 +125,7 @@ with st.sidebar:
 
 
 if st.session_state["page"] == "login":
+
 
     with st.container(border=True):
 
