@@ -1,1 +1,7 @@
-[]
+[
+    {
+        "item": "Iphone",
+        "quantity": 1,
+        "employee": "John"
+    }
+]
