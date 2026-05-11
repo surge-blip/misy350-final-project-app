@@ -256,7 +256,12 @@ elif st.session_state["page"] == "owner_dashboard":
                     st.session_state["inventory"]
                 )
 
-                st.dataframe(df)
+                st.data_editor(
+                    df,
+                    use_container_width=True,
+                    height=150,
+                    disabled=True
+                )
 
             else:
                 st.info("No products available")
